@@ -146,3 +146,4 @@ workflows:
       email:
         recipients:
           - user_1@example.com
+          
