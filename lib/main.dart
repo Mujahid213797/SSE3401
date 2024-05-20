@@ -1,11 +1,15 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,12 +17,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue, // Adjust color scheme as needed
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -31,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void onSelectedFactory(String factory) {
     if (factory == "Factory 1 (UNREACHABLE)") {
       // Simulate connecting (could involve network calls)
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 2), () {
         setState(() {
           selectedFactory = "Factory 2"; // Update displayed factory
         });
@@ -44,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void navigateToEngineerPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => EngineerPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const EngineerPage()));
   }
 
   @override
@@ -69,11 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
               visible: selectedFactory != "Factory 1", // Hide for Factory 1
               child: SensorReadingsCard(factory: selectedFactory),
             ),
-            Text(
+            const Text(
               "Total Power Consumption: 1549.7 kW",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            Text("Last updated: 2024-05-11 00:00"),
+            const Text("Last updated: 2024-05-11 00:00"),
           ],
         ),
       ),
@@ -93,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => SettingsPage()),
+        MaterialPageRoute(builder: (context) => const SettingsPage()),
       ),
     }
   },
@@ -104,6 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 class NotificationSettingsPage extends StatefulWidget {
+  const NotificationSettingsPage({super.key});
+
   @override
   _NotificationSettingsPageState createState() => _NotificationSettingsPageState();
 }
@@ -118,33 +126,33 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notification Settings"),
+        title: const Text("Notification Settings"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text(
+            const Text(
               "Factory 1",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SwitchListTile(
-              title: Text("Steam Pressure"),
+              title: const Text("Steam Pressure"),
               value: _steamPressureNotificationsEnabled,
               onChanged: (value) => setState(() => _steamPressureNotificationsEnabled = value),
             ),
             SwitchListTile(
-              title: Text("Steam Flow"),
+              title: const Text("Steam Flow"),
               value: _steamFlowNotificationsEnabled,
               onChanged: (value) => setState(() => _steamFlowNotificationsEnabled = value),
             ),
             SwitchListTile(
-              title: Text("Water Level"),
+              title: const Text("Water Level"),
               value: _waterLevelNotificationsEnabled,
               onChanged: (value) => setState(() => _waterLevelNotificationsEnabled = value),
             ),
             SwitchListTile(
-              title: Text("Power Frequency"),
+              title: const Text("Power Frequency"),
               value: _powerFrequencyNotificationsEnabled,
               onChanged: (value) => setState(() => _powerFrequencyNotificationsEnabled = value),
             ),
@@ -156,6 +164,8 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
 }
 
 class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
+
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -174,7 +184,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings"),
+        title: const Text("Settings"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -195,14 +205,14 @@ class _SettingsPageState extends State<SettingsPage> {
             const SizedBox(height: 16.0), // Add spacing
 
             // Total Power Consumption
-            Text(
+            const Text(
               "Total Power Consumption: 1549.7 kW",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8.0), // Add smaller spacing
 
             // Last Updated
-            Text("Last updated: 2024-05-11 00:00"),
+            const Text("Last updated: 2024-05-11 00:00"),
           ],
         ),
       ),
@@ -212,17 +222,19 @@ class _SettingsPageState extends State<SettingsPage> {
 
 
 class EngineerPage extends StatelessWidget {
+  const EngineerPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Enter Phone Number"),
+        title: const Text("Enter Phone Number"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
+            const TextField(
               decoration: InputDecoration(
                 labelText: "Phone Number",
               ),
@@ -231,7 +243,7 @@ class EngineerPage extends StatelessWidget {
               onPressed: () {
                 // Add functionality here
               },
-              child: Text("Get Activation Code"),
+              child: const Text("Get Activation Code"),
             ),
           ],
         ),
@@ -241,6 +253,8 @@ class EngineerPage extends StatelessWidget {
 }
 
 class ActivationPage extends StatefulWidget {
+  const ActivationPage({super.key});
+
   @override
   _ActivationPageState createState() => _ActivationPageState();
 }
@@ -257,6 +271,7 @@ class _ActivationPageState extends State<ActivationPage> {
   void submitActivationCode() {
     // Replace with your actual logic to submit the activation code
     // This could involve network calls or other actions
+    // ignore: avoid_print
     print("Submitting activation code: $activationCode");
   }
 
@@ -264,21 +279,21 @@ class _ActivationPageState extends State<ActivationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Activate Account"),
+        title: const Text("Activate Account"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Activation Code",
               ),
               onChanged: onCodeChanged,
             ),
             ElevatedButton(
               onPressed: submitActivationCode,
-              child: Text("Get Activation Code"),
+              child: const Text("Get Activation Code"),
             ),
           ],
         ),
@@ -295,12 +310,12 @@ class FactoryButton extends StatelessWidget {
   final bool isUnreachable; // Added flag for unreachable state
 
   const FactoryButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     this.isSelected = false,
     this.isUnreachable = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -323,13 +338,13 @@ class SensorReadingsCard extends StatelessWidget {
   final String factory;
   final List<ListTile> sensorReadings = []; // Initialize with empty list
 
-  SensorReadingsCard({Key? key, required this.factory}) : super(key: key);
+  SensorReadingsCard({super.key, required this.factory});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return const Card(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
             ListTile(
