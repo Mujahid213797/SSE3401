@@ -77,9 +77,8 @@ workflows:
         script: |
           flutter analyze
       - name: Flutter unit tests
-        script: |
-          flutter test
-        ignore_failure: true
+        script: flutter test
+        ignore_failure: false # Set this to false to fail the build if tests fail
       - name: Flutter build ipa and automatic versioning
         script: |
           flutter build ipa --release \
