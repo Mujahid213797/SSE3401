@@ -147,3 +147,10 @@ workflows:
       email:
         recipients:
           - user_1@example.com
+workflows:
+  analyze_and_build:
+    name: Analyze and Build
+    scripts:
+      - name: Analyze
+        script: bash analyze_script.sh
+      # Add other build steps here
