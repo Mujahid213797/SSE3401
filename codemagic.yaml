@@ -11,21 +11,21 @@ workflows:
       cocoapods: default
       vars:
         FIREBASE_PROJECT:"lab6-62850"
-      scripts:
-        - name: Get Flutter packages
-          script: |
+    scripts:
+      - name: Get Flutter packages
+        script: |
           flutter packages pub get  
-        - name: Build APK with Flutter
-          script: |
+      - name: Build APK with Flutter
+        script: |
           flutter build apk --debug
-        - name: Creat debug and test APK
-          script: |
+      - name: Creat debug and test APK
+        script: |
           set -ex
           cd android
           ./gradlew app.assembleAndroidTest
           ./gradlew app.assembleDebug -Ptarget="$CM_BUILD_DIR/integration_test/app_test.dart"
-        - name: Run Firebase Test Lab Tests
-          script: |
+      - name: Run Firebase Test Lab Tests
+        script: |
           set -ex
           echo $GCLOUD_KEY_FILE | base64 --decode > ./gcloud_key_file.jason
           gcloud auth activate-service-account --key-file=gcloud_key_file.jason
